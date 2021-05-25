@@ -1,28 +1,32 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { fetchAllTodos } from "./reducer/todos/todos.actions";
+import Form from "./components/form/form";
+import TodoList from "./components/todos/todoList";
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+import "./App.css";
+
+const App = () => {
+  const [showForm, setShowForm] = useState(false);
+  const [currentId, setCurrentId] = useState(null);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchAllTodos());
+  }, [dispatch]);
+
+  return (
+    <div className="container">
+      <div className="app-container">
+        <Form
+          showForm={showForm}
+          setShowForm={setShowForm}
+          currentId={currentId}
+          setCurrentId={setCurrentId}
+        />
+        <TodoList setShowForm={setShowForm} setCurrentId={setCurrentId} />
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 export default App;

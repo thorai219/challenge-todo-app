@@ -1,0 +1,18 @@
+.card-icons {
+  padding: 6px;
+  margin-right: 10px;
+  color: #fff;
+  border-radius: 5px;
+}
+
+.check {
+  background-color: green;
+}
+
+.edit {
+  background-color: blue;
+}
+
+.remove {
+  background-color: red;
+}
